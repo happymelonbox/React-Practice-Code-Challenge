@@ -9,7 +9,9 @@ class App extends Component {
   constructor(){
     super()
     this.state ={
-      sushi: []
+      sushi: [],
+      eaten: [],
+      moneyLeft: 600
     }
   }
 
@@ -17,11 +19,10 @@ class App extends Component {
     fetch(API)
     .then(resp=>resp.json())
     .then(data=>{
-      console.log(data)
       this.setState({
       sushi: data,
       firstSushi: 0,
-      lastSushi: 4
+      lastSushi: 4,
     })})
   }
 
@@ -32,11 +33,19 @@ class App extends Component {
      lastSushi: this.state.lastSushi + 4
    })}
   }
+
+  eatSushi = (event, sushiPrice) => {
+    this.state.eaten.push(event.target)
+    event.target.style.display ='none'
+    this.setState({
+      moneyLeft: this.state.moneyLeft - sushiPrice
+    })
+  }
   render() {
     return (
       <div className="app">
-        <SushiContainer firstSushi={this.state.firstSushi} lastSushi={this.state.lastSushi} moreSushi={this.handleMoreSushi} sushi={this.state.sushi}/>
-        <Table />
+        <SushiContainer isEaten={this.state.isEaten} firstSushi={this.state.firstSushi} lastSushi={this.state.lastSushi} moreSushi={this.handleMoreSushi} sushi={this.state.sushi} eatSushi={this.eatSushi}/>
+        <Table eatenSushi={this.state.eaten} moneyLeft={this.state.moneyLeft}/>
       </div>
     );
   }
