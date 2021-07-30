@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react'
 
-const Table = ({eatenSushi, moneyLeft}) => {
+const Table = ({moneyLeft, eatenSushi}) => {
 
   const renderPlates = (array) => {
-    return array.map((eatenSushi, index) => {
+    return array.map((index) => {
       return (
-      <div className="empty-plate" style={{ top: -7 * index }}/>)
+      <div className="empty-plate" style={{ top: -7 * array.indexOf(index) }}/>)
     })
   }
 
@@ -17,12 +17,7 @@ const Table = ({eatenSushi, moneyLeft}) => {
       <div className="table">
         <div className="stack">
           {
-            /* 
-               renderPlates takes an array 
-               and renders an empty plate
-               for every element in the array
-            */
-            renderPlates([])
+            renderPlates(eatenSushi)
           }
         </div>
       </div>

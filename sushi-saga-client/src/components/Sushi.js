@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 
-const Sushi = ({sushi, eatSushi}) => {
+const Sushi = ({sushi, eatSushi, handleEmptyPlate}) => {
 
   const handleEatSushi = (event)=>{
     eatSushi(event,sushi.price)
@@ -10,8 +10,8 @@ const Sushi = ({sushi, eatSushi}) => {
       <div className="plate" 
            onClick={handleEatSushi}>
         { 
-          /* Tell me if this sushi has been eaten! */ 
-          false ?
+          handleEmptyPlate ===
+          !false ?
             null
           :
             <img src={sushi.img_url} width="100%" />

@@ -35,11 +35,11 @@ class App extends Component {
   }
 
   eatSushi = (event, sushiPrice) => {
-    this.state.eaten.push(event.target)
-    event.target.style.display ='none'
     this.setState({
-      moneyLeft: this.state.moneyLeft - sushiPrice
-    })
+      moneyLeft: this.state.moneyLeft - sushiPrice,
+      eaten: [...this.state.eaten, event.target.parentNode]
+    },()=>{console.log(this.state.eaten)})
+    event.target.style.display ='none'
   }
   render() {
     return (
