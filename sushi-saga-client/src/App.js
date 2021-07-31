@@ -32,6 +32,12 @@ class App extends Component {
      firstSushi: this.state.firstSushi + 4,
      lastSushi: this.state.lastSushi + 4
    })}
+   if(this.state.lastSushi === 100){
+     this.setState({
+      firstSushi: 0,
+      lastSushi: 4
+     })
+   }
   }
 
   eatSushi = (event, sushiPrice) => {
