@@ -6,15 +6,15 @@ const Sushi = ({sushi, eatSushi, handleEmptyPlate}) => {
     eatSushi(event,sushi.price)
   }
   return (
-    <div className="sushi">
-      <div className="plate" 
-           onClick={handleEatSushi}>
-        { 
+    <div className="sushi" >
+      <div className="plate"
+           >
+        {
           handleEmptyPlate ===
           !false ?
             null
           :
-            <img src={sushi.img_url} width="100%" />
+            <img src={sushi.img_url} width="100%" onClick={handleEatSushi} />
         }
       </div>
       <h4 className="sushi-details">

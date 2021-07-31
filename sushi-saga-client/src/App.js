@@ -11,7 +11,7 @@ class App extends Component {
     this.state ={
       sushi: [],
       eaten: [],
-      moneyLeft: 600
+      moneyLeft: 50
     }
   }
 
@@ -35,17 +35,24 @@ class App extends Component {
   }
 
   eatSushi = (event, sushiPrice) => {
+    if(this.state.moneyLeft>sushiPrice){
     this.setState({
       moneyLeft: this.state.moneyLeft - sushiPrice,
-      eaten: [...this.state.eaten, event.target.parentNode]
-    },()=>{console.log(this.state.eaten)})
+      eaten: [...this.state.eaten, event.target]
+    })
     event.target.style.display ='none'
+  }}
+
+  addToWallet = (value) => {
+    this.setState({
+      moneyLeft: this.state.moneyLeft + value
+    })
   }
   render() {
     return (
       <div className="app">
         <SushiContainer isEaten={this.state.isEaten} firstSushi={this.state.firstSushi} lastSushi={this.state.lastSushi} moreSushi={this.handleMoreSushi} sushi={this.state.sushi} eatSushi={this.eatSushi}/>
-        <Table eatenSushi={this.state.eaten} moneyLeft={this.state.moneyLeft}/>
+        <Table eatenSushi={this.state.eaten} moneyLeft={this.state.moneyLeft} addToWallet={this.addToWallet}/>
       </div>
     );
   }
