@@ -20,7 +20,8 @@ const Table = ({moneyLeft, eatenSushi, addToWallet}) => {
       <h1 className="remaining">
         You have: ${moneyLeft} remaining!
       </h1>
-      <form onSubmit={handleWallet}>
+      <form className="wallet" onSubmit={handleWallet}>
+        <h2>Need more cash?</h2>
         <input type='text' placeholder="How much?" name='money'></input>
         <input type='submit' placeholder="Add to wallet"></input>
       </form>
